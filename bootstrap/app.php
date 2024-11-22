@@ -1,13 +1,18 @@
 <?php
 use App\Core\App;
-use League\Container\Container;
+
+use App\core\Container;
+use App\core\Example;
+
+use League\Container\ReflectionContainer;
 use Spatie\Ignition\Ignition;
 
 require '../vendor/autoload.php';
 
-$container = new Container();
+$container = Container::getInstance();
+$container->delegate(new ReflectionContainer());
 
 $container->addServiceProvider(new \App\Providers\AppServiceProvider());
-var_dump($container->get('name'));
+
 $app = new App();
 $app->run();

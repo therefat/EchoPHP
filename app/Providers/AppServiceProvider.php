@@ -13,6 +13,7 @@ class AppServiceProvider extends AbstractServiceProvider implements BootableServ
     public function boot(): void
     {
         Ignition::make()->register();
+        
     }
 
     public function provides(string $id): bool

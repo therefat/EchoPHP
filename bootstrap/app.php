@@ -12,6 +12,9 @@ use League\Container\ReflectionContainer;
 use Spatie\Ignition\Ignition;
 
 require '../vendor/autoload.php';
+$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+
+$dotenv->load();
 
 $container = Container::getInstance();
 $container->delegate(new ReflectionContainer());
@@ -21,6 +24,7 @@ $config = $container->get(Config::class);
 foreach ($config->get('app.providers') as $provider){
     $container->addServiceProvider(new $provider);
 }
+
 
 $app = new App();
 $app->run();
